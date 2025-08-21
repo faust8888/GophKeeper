@@ -4,12 +4,13 @@ import (
 	"context"
 	"database/sql"
 	"errors"
-	"github.com/faust8888/GophKeeper/internal/pkg/logger"
+	"github.com/faust8888/GophKeeper/internal/pkg/common"
+	pb "github.com/faust8888/GophKeeper/internal/pkg/proto/gophkeeperpb"
+	"github.com/faust8888/GophKeeper/internal/pkg/security"
 	"github.com/faust8888/GophKeeper/internal/server/config"
+	"github.com/faust8888/GophKeeper/internal/server/logger"
 	"github.com/faust8888/GophKeeper/internal/server/model"
-	pb "github.com/faust8888/GophKeeper/internal/server/proto/gophkeeperpb"
 	"github.com/faust8888/GophKeeper/internal/server/repository"
-	"github.com/faust8888/GophKeeper/internal/server/security"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
 	"go.uber.org/zap"
@@ -32,15 +33,20 @@ func NewGophKeeperService(cfg *config.Config, repo repository.Repository) *GophK
 	}
 }
 
-func (s *GophKeeperService) Register(ctx context.Context, req *pb.RegisterUserRequest) (*pb.RegisterUserResponse, error) {
+func (s *GophKeeperService) RegisterUser(ctx context.Context, req *pb.RegisterUserRequest) (*pb.RegisterUserResponse, error) {
 	if _, err := s.repo.GetUserByLogin(ctx, req.Login); err == nil {
 		return nil, status.Error(codes.AlreadyExists, "user already exists")
 	}
 
-	hash := security.HashPassword(req.Password)
+	hash, salt, err := security.HashPassword(req.Password)
+	if err != nil {
+		return nil, status.Error(codes.InvalidArgument, "couldn't hash password")
+	}
+
 	user := model.User{
 		Login:        req.Login,
 		PasswordHash: hash,
+		Salt:         salt,
 	}
 	if err := s.repo.CreateUser(ctx, &user); err != nil {
 		return nil, status.Error(codes.Internal, "failed to create user")
@@ -58,14 +64,14 @@ func (s *GophKeeperService) Login(ctx context.Context, req *pb.LoginRequest) (*p
 		return nil, status.Error(codes.Internal, "failed to get user")
 	}
 
-	if err = security.CompareHash(user.PasswordHash, req.Password); err != nil {
+	if !security.VerifyPassword(req.Password, user.PasswordHash, user.Salt) {
 		return nil, status.Error(codes.Unauthenticated, "invalid password")
 	}
 
 	userID := user.ID.String()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"sub": userID,
-		"exp": time.Now().Add(10 * time.Minute).Unix(),
+		"exp": time.Now().Add(30 * time.Minute).Unix(),
 	})
 	tokenString, err := token.SignedString([]byte(s.cfg.AuthKey))
 	if err != nil {
@@ -109,7 +115,7 @@ func (s *GophKeeperService) Sync(ctx context.Context, req *pb.SyncRequest) (*pb.
 		secret := model.Secret{
 			ID:       localID,
 			UserID:   uid,
-			Type:     SecretTypeToString(local.Type),
+			Type:     common.SecretTypeToString(local.Type),
 			Metadata: local.Metadata,
 			Data:     local.Data,
 			Version:  local.Version,
@@ -128,7 +134,7 @@ func (s *GophKeeperService) Sync(ctx context.Context, req *pb.SyncRequest) (*pb.
 	for _, sec := range updatedSecrets {
 		pbSecrets = append(pbSecrets, &pb.Secret{
 			Id:        sec.ID.String(),
-			Type:      SecretTypeFromString(sec.Type),
+			Type:      common.SecretTypeFromString(sec.Type),
 			Metadata:  sec.Metadata,
 			Data:      sec.Data,
 			Version:   sec.Version,
@@ -156,7 +162,7 @@ func (s *GophKeeperService) GetSecret(ctx context.Context, req *pb.GetSecretRequ
 	return &pb.GetSecretResponse{
 		Secret: &pb.Secret{
 			Id:        secret.ID.String(),
-			Type:      SecretTypeFromString(secret.Type),
+			Type:      common.SecretTypeFromString(secret.Type),
 			Metadata:  secret.Metadata,
 			Data:      secret.Data,
 			Version:   secret.Version,
@@ -166,41 +172,3 @@ func (s *GophKeeperService) GetSecret(ctx context.Context, req *pb.GetSecretRequ
 }
 
 func (s *GophKeeperService) mustEmbedUnimplementedGophKeeperServer() {}
-
-func SecretTypeFromString(s string) pb.SecretType {
-	switch s {
-	case "EMPTY":
-		return pb.SecretType_EMPTY
-	case "UNSPECIFIED":
-		return pb.SecretType_UNSPECIFIED
-	case "CREDENTIALS":
-		return pb.SecretType_CREDENTIALS
-	case "TEXT":
-		return pb.SecretType_TEXT
-	case "BINARY":
-		return pb.SecretType_BINARY
-	case "CARD":
-		return pb.SecretType_CARD
-	default:
-		return pb.SecretType_UNSPECIFIED
-	}
-}
-
-func SecretTypeToString(secretType pb.SecretType) string {
-	switch secretType {
-	case pb.SecretType_EMPTY:
-		return "EMPTY"
-	case pb.SecretType_UNSPECIFIED:
-		return "UNSPECIFIED"
-	case pb.SecretType_CREDENTIALS:
-		return "CREDENTIALS"
-	case pb.SecretType_TEXT:
-		return "TEXT"
-	case pb.SecretType_BINARY:
-		return "BINARY"
-	case pb.SecretType_CARD:
-		return "CARD"
-	default:
-		return "UNSPECIFIED"
-	}
-}

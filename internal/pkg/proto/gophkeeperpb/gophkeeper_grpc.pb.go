@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.3
-// source: internal/server/proto/gophkeeper.proto
+// source: internal/pkg/proto/gophkeeper.proto
 
 package gophkeeperpb
 
@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	GophKeeper_RegisterUser_FullMethodName = "/gophkeeper.GophKeeper/RegisterUser"
-	GophKeeper_Login_FullMethodName        = "/gophkeeper.GophKeeper/Login"
-	GophKeeper_Sync_FullMethodName         = "/gophkeeper.GophKeeper/Sync"
-	GophKeeper_GetSecret_FullMethodName    = "/gophkeeper.GophKeeper/GetSecret"
+	GophKeeper_RegisterUser_FullMethodName = "/gophkeeperpb.GophKeeper/RegisterUser"
+	GophKeeper_Login_FullMethodName        = "/gophkeeperpb.GophKeeper/Login"
+	GophKeeper_Sync_FullMethodName         = "/gophkeeperpb.GophKeeper/Sync"
+	GophKeeper_GetSecret_FullMethodName    = "/gophkeeperpb.GophKeeper/GetSecret"
 )
 
 // GophKeeperClient is the client API for GophKeeper service.
@@ -210,7 +210,7 @@ func _GophKeeper_GetSecret_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var GophKeeper_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "gophkeeper.GophKeeper",
+	ServiceName: "gophkeeperpb.GophKeeper",
 	HandlerType: (*GophKeeperServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -231,5 +231,5 @@ var GophKeeper_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "internal/server/proto/gophkeeper.proto",
+	Metadata: "internal/pkg/proto/gophkeeper.proto",
 }

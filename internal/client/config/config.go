@@ -6,13 +6,12 @@ package config
 import (
 	"encoding/json"
 	"flag"
-	"github.com/faust8888/GophKeeper/internal/server/logger"
+	"fmt"
 	"io"
 	"os"
 	"sync"
 
 	"github.com/caarlos0/env/v6"
-	"go.uber.org/zap"
 )
 
 // Константы для флагов командной строки.
@@ -23,8 +22,8 @@ const (
 	LoggingLevelFlag = "l"
 	// DataSourceNameFlag - флаг для строки подключения к БД (-d).
 	DataSourceNameFlag = "d"
-	// AuthKeyNameFlag - флаг для ключа аутентификации (-k).
-	AuthKeyNameFlag = "k"
+	// SecretKeyNameFlag - флаг для ключа аутентификации (-k).
+	SecretKeyNameFlag = "k"
 	// EnableTLSOnServerFlag - флаг для включения HTTPS (-s).
 	EnableTLSOnServerFlag = "s"
 	// ConfigFileFlag - флаг для пути к файлу конфигурации (-c).
@@ -41,8 +40,8 @@ type Config struct {
 	LoggingLevel string `env:"LOGGING_LEVEL"`
 	// DataSourceName - строка подключения к базе данных PostgreSQL (флаг -d, env DATABASE_DSN).
 	DataSourceName string `env:"DATABASE_DSN" json:"database_dsn"`
-	// AuthKey - секретный ключ для подписи токенов аутентификации (флаг -k, env AUTH_KEY).
-	AuthKey string `env:"AUTH_KEY"`
+	// SecretKey - секретный ключ для подписи токенов аутентификации (флаг -k, env SECRET_KEY).
+	SecretKey string `env:"SECRET_KEY"`
 	// EnableHTTPS - флаг, включающий HTTPS на сервере (флаг -s, env ENABLE_HTTPS).
 	EnableHTTPS bool `env:"ENABLE_HTTPS" json:"enable_https"`
 }
@@ -89,7 +88,7 @@ func Create() *Config {
 		}
 
 		if err := env.Parse(cfg); err != nil {
-			logger.Log.Error("Failed to parse environment variables", zap.Error(err))
+			fmt.Errorf("failed to parse environment variables: %v", err)
 		}
 
 		defineGlobalFlags()
@@ -105,8 +104,8 @@ func defaultConfig() *Config {
 	return &Config{
 		ServerGRPCAddress: "localhost:8090",
 		LoggingLevel:      "INFO",
-		DataSourceName:    "postgres://localhost:5432/postgres?sslmode=disable",
-		AuthKey:           "dd109d0b86dc6a06584a835538768c6a2ceb588560755c7f7b90c0bf774237c8",
+		DataSourceName:    "client.db",
+		SecretKey:         "dd109d0b86dc6a06584a835538768c6a2ceb588560755c7f7b90c0bf774237c8",
 		EnableHTTPS:       false,
 	}
 }
@@ -136,13 +135,11 @@ func findConfigPathUsingFlags() string {
 func (c *Config) applyJSONConfig(path string) {
 	data, err := os.ReadFile(path)
 	if err != nil {
-		logger.Log.Warn("Failed to read config file, skipping", zap.String("path", path), zap.Error(err))
 		return
 	}
 
 	var jsonCfg JSONConfig
 	if err := json.Unmarshal(data, &jsonCfg); err != nil {
-		logger.Log.Warn("Failed to parse JSON config file, skipping", zap.String("path", path), zap.Error(err))
 		return
 	}
 	if jsonCfg.ServerGRCPAddress != nil {
@@ -164,7 +161,7 @@ func defineGlobalFlags() {
 	flag.StringVar(&cfg.DataSourceName, DataSourceNameFlag, cfg.DataSourceName, "Data Source Name for PostgreSQL (ex: postgres://user:pass@host:port/db)")
 	flag.BoolVar(&cfg.EnableHTTPS, EnableTLSOnServerFlag, cfg.EnableHTTPS, "Enable HTTPS")
 	flag.StringVar(&cfg.LoggingLevel, LoggingLevelFlag, cfg.LoggingLevel, "Level of logging to use")
-	flag.StringVar(&cfg.AuthKey, AuthKeyNameFlag, cfg.AuthKey, "Auth Key for authentication")
+	flag.StringVar(&cfg.SecretKey, SecretKeyNameFlag, cfg.SecretKey, "Secret Key")
 
 	// Определяем флаг -c/-config здесь еще раз, чтобы он отображался в справке (-h).
 	// Его значение нам уже не нужно, так как мы его получили ранее.

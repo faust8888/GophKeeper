@@ -32,7 +32,7 @@ func (repo *Repository) GetUserByLogin(ctx context.Context, login string) (*mode
 	var user model.User
 	err := repo.db.QueryRowContext(ctx, query, login).Scan(&user.ID, &user.Login, &user.PasswordHash, &user.Salt)
 	if errors.Is(err, sql.ErrNoRows) {
-		return nil, status.Error(codes.NotFound, "Not found User")
+		return nil, status.Error(codes.NotFound, "Not found client")
 	}
 	if err != nil {
 		return nil, fmt.Errorf("failed to get user: %w", err)

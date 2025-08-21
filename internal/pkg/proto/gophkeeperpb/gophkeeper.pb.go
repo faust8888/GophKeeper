@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v5.29.3
-// source: internal/server/proto/gophkeeper.proto
+// source: internal/pkg/proto/gophkeeper.proto
 
 package gophkeeperpb
 
@@ -64,11 +64,11 @@ func (x SecretType) String() string {
 }
 
 func (SecretType) Descriptor() protoreflect.EnumDescriptor {
-	return file_internal_server_proto_gophkeeper_proto_enumTypes[0].Descriptor()
+	return file_internal_pkg_proto_gophkeeper_proto_enumTypes[0].Descriptor()
 }
 
 func (SecretType) Type() protoreflect.EnumType {
-	return &file_internal_server_proto_gophkeeper_proto_enumTypes[0]
+	return &file_internal_pkg_proto_gophkeeper_proto_enumTypes[0]
 }
 
 func (x SecretType) Number() protoreflect.EnumNumber {
@@ -77,7 +77,7 @@ func (x SecretType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SecretType.Descriptor instead.
 func (SecretType) EnumDescriptor() ([]byte, []int) {
-	return file_internal_server_proto_gophkeeper_proto_rawDescGZIP(), []int{0}
+	return file_internal_pkg_proto_gophkeeper_proto_rawDescGZIP(), []int{0}
 }
 
 type RegisterUserRequest struct {
@@ -90,7 +90,7 @@ type RegisterUserRequest struct {
 
 func (x *RegisterUserRequest) Reset() {
 	*x = RegisterUserRequest{}
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[0]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -102,7 +102,7 @@ func (x *RegisterUserRequest) String() string {
 func (*RegisterUserRequest) ProtoMessage() {}
 
 func (x *RegisterUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[0]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -115,7 +115,7 @@ func (x *RegisterUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterUserRequest.ProtoReflect.Descriptor instead.
 func (*RegisterUserRequest) Descriptor() ([]byte, []int) {
-	return file_internal_server_proto_gophkeeper_proto_rawDescGZIP(), []int{0}
+	return file_internal_pkg_proto_gophkeeper_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *RegisterUserRequest) GetLogin() string {
@@ -141,7 +141,7 @@ type RegisterUserResponse struct {
 
 func (x *RegisterUserResponse) Reset() {
 	*x = RegisterUserResponse{}
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[1]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -153,7 +153,7 @@ func (x *RegisterUserResponse) String() string {
 func (*RegisterUserResponse) ProtoMessage() {}
 
 func (x *RegisterUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[1]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -166,7 +166,7 @@ func (x *RegisterUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterUserResponse.ProtoReflect.Descriptor instead.
 func (*RegisterUserResponse) Descriptor() ([]byte, []int) {
-	return file_internal_server_proto_gophkeeper_proto_rawDescGZIP(), []int{1}
+	return file_internal_pkg_proto_gophkeeper_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *RegisterUserResponse) GetUserId() string {
@@ -186,7 +186,7 @@ type LoginRequest struct {
 
 func (x *LoginRequest) Reset() {
 	*x = LoginRequest{}
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[2]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -198,7 +198,7 @@ func (x *LoginRequest) String() string {
 func (*LoginRequest) ProtoMessage() {}
 
 func (x *LoginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[2]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -211,7 +211,7 @@ func (x *LoginRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
 func (*LoginRequest) Descriptor() ([]byte, []int) {
-	return file_internal_server_proto_gophkeeper_proto_rawDescGZIP(), []int{2}
+	return file_internal_pkg_proto_gophkeeper_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *LoginRequest) GetLogin() string {
@@ -238,7 +238,7 @@ type LoginResponse struct {
 
 func (x *LoginResponse) Reset() {
 	*x = LoginResponse{}
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[3]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -250,7 +250,7 @@ func (x *LoginResponse) String() string {
 func (*LoginResponse) ProtoMessage() {}
 
 func (x *LoginResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[3]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -263,7 +263,7 @@ func (x *LoginResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginResponse.ProtoReflect.Descriptor instead.
 func (*LoginResponse) Descriptor() ([]byte, []int) {
-	return file_internal_server_proto_gophkeeper_proto_rawDescGZIP(), []int{3}
+	return file_internal_pkg_proto_gophkeeper_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *LoginResponse) GetToken() string {
@@ -283,7 +283,7 @@ func (x *LoginResponse) GetUserId() string {
 type Secret struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Type          SecretType             `protobuf:"varint,2,opt,name=type,proto3,enum=gophkeeper.SecretType" json:"type,omitempty"`
+	Type          SecretType             `protobuf:"varint,2,opt,name=type,proto3,enum=gophkeeperpb.SecretType" json:"type,omitempty"`
 	Metadata      map[string]string      `protobuf:"bytes,3,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	Data          []byte                 `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
 	Version       int32                  `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
@@ -294,7 +294,7 @@ type Secret struct {
 
 func (x *Secret) Reset() {
 	*x = Secret{}
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[4]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -306,7 +306,7 @@ func (x *Secret) String() string {
 func (*Secret) ProtoMessage() {}
 
 func (x *Secret) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[4]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -319,7 +319,7 @@ func (x *Secret) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Secret.ProtoReflect.Descriptor instead.
 func (*Secret) Descriptor() ([]byte, []int) {
-	return file_internal_server_proto_gophkeeper_proto_rawDescGZIP(), []int{4}
+	return file_internal_pkg_proto_gophkeeper_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Secret) GetId() string {
@@ -374,7 +374,7 @@ type SyncRequest struct {
 
 func (x *SyncRequest) Reset() {
 	*x = SyncRequest{}
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[5]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -386,7 +386,7 @@ func (x *SyncRequest) String() string {
 func (*SyncRequest) ProtoMessage() {}
 
 func (x *SyncRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[5]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -399,7 +399,7 @@ func (x *SyncRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncRequest.ProtoReflect.Descriptor instead.
 func (*SyncRequest) Descriptor() ([]byte, []int) {
-	return file_internal_server_proto_gophkeeper_proto_rawDescGZIP(), []int{5}
+	return file_internal_pkg_proto_gophkeeper_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SyncRequest) GetToken() string {
@@ -425,7 +425,7 @@ type SyncResponse struct {
 
 func (x *SyncResponse) Reset() {
 	*x = SyncResponse{}
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[6]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -437,7 +437,7 @@ func (x *SyncResponse) String() string {
 func (*SyncResponse) ProtoMessage() {}
 
 func (x *SyncResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[6]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -450,7 +450,7 @@ func (x *SyncResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncResponse.ProtoReflect.Descriptor instead.
 func (*SyncResponse) Descriptor() ([]byte, []int) {
-	return file_internal_server_proto_gophkeeper_proto_rawDescGZIP(), []int{6}
+	return file_internal_pkg_proto_gophkeeper_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *SyncResponse) GetServerSecrets() []*Secret {
@@ -470,7 +470,7 @@ type GetSecretRequest struct {
 
 func (x *GetSecretRequest) Reset() {
 	*x = GetSecretRequest{}
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[7]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -482,7 +482,7 @@ func (x *GetSecretRequest) String() string {
 func (*GetSecretRequest) ProtoMessage() {}
 
 func (x *GetSecretRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[7]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -495,7 +495,7 @@ func (x *GetSecretRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSecretRequest.ProtoReflect.Descriptor instead.
 func (*GetSecretRequest) Descriptor() ([]byte, []int) {
-	return file_internal_server_proto_gophkeeper_proto_rawDescGZIP(), []int{7}
+	return file_internal_pkg_proto_gophkeeper_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetSecretRequest) GetToken() string {
@@ -521,7 +521,7 @@ type GetSecretResponse struct {
 
 func (x *GetSecretResponse) Reset() {
 	*x = GetSecretResponse{}
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[8]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -533,7 +533,7 @@ func (x *GetSecretResponse) String() string {
 func (*GetSecretResponse) ProtoMessage() {}
 
 func (x *GetSecretResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_server_proto_gophkeeper_proto_msgTypes[8]
+	mi := &file_internal_pkg_proto_gophkeeper_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -546,7 +546,7 @@ func (x *GetSecretResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSecretResponse.ProtoReflect.Descriptor instead.
 func (*GetSecretResponse) Descriptor() ([]byte, []int) {
-	return file_internal_server_proto_gophkeeper_proto_rawDescGZIP(), []int{8}
+	return file_internal_pkg_proto_gophkeeper_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetSecretResponse) GetSecret() *Secret {
@@ -556,12 +556,11 @@ func (x *GetSecretResponse) GetSecret() *Secret {
 	return nil
 }
 
-var File_internal_server_proto_gophkeeper_proto protoreflect.FileDescriptor
+var File_internal_pkg_proto_gophkeeper_proto protoreflect.FileDescriptor
 
-const file_internal_server_proto_gophkeeper_proto_rawDesc = "" +
+const file_internal_pkg_proto_gophkeeper_proto_rawDesc = "" +
 	"\n" +
-	"&internal/server/proto/gophkeeper.proto\x12\n" +
-	"gophkeeper\x1a\x1fgoogle/protobuf/timestamp.proto\"G\n" +
+	"#internal/pkg/proto/gophkeeper.proto\x12\fgophkeeperpb\x1a\x1fgoogle/protobuf/timestamp.proto\"G\n" +
 	"\x13RegisterUserRequest\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"/\n" +
@@ -572,28 +571,28 @@ const file_internal_server_proto_gophkeeper_proto_rawDesc = "" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\">\n" +
 	"\rLoginResponse\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xa8\x02\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xac\x02\n" +
 	"\x06Secret\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12*\n" +
-	"\x04type\x18\x02 \x01(\x0e2\x16.gophkeeper.SecretTypeR\x04type\x12<\n" +
-	"\bmetadata\x18\x03 \x03(\v2 .gophkeeper.Secret.MetadataEntryR\bmetadata\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12,\n" +
+	"\x04type\x18\x02 \x01(\x0e2\x18.gophkeeperpb.SecretTypeR\x04type\x12>\n" +
+	"\bmetadata\x18\x03 \x03(\v2\".gophkeeperpb.Secret.MetadataEntryR\bmetadata\x12\x12\n" +
 	"\x04data\x18\x04 \x01(\fR\x04data\x12\x18\n" +
 	"\aversion\x18\x05 \x01(\x05R\aversion\x129\n" +
 	"\n" +
 	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\\\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"^\n" +
 	"\vSyncRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\x127\n" +
-	"\rlocal_secrets\x18\x02 \x03(\v2\x12.gophkeeper.SecretR\flocalSecrets\"I\n" +
-	"\fSyncResponse\x129\n" +
-	"\x0eserver_secrets\x18\x01 \x03(\v2\x12.gophkeeper.SecretR\rserverSecrets\"E\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\x129\n" +
+	"\rlocal_secrets\x18\x02 \x03(\v2\x14.gophkeeperpb.SecretR\flocalSecrets\"K\n" +
+	"\fSyncResponse\x12;\n" +
+	"\x0eserver_secrets\x18\x01 \x03(\v2\x14.gophkeeperpb.SecretR\rserverSecrets\"E\n" +
 	"\x10GetSecretRequest\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x1b\n" +
-	"\tsecret_id\x18\x02 \x01(\tR\bsecretId\"?\n" +
-	"\x11GetSecretResponse\x12*\n" +
-	"\x06secret\x18\x01 \x01(\v2\x12.gophkeeper.SecretR\x06secret*Y\n" +
+	"\tsecret_id\x18\x02 \x01(\tR\bsecretId\"A\n" +
+	"\x11GetSecretResponse\x12,\n" +
+	"\x06secret\x18\x01 \x01(\v2\x14.gophkeeperpb.SecretR\x06secret*Y\n" +
 	"\n" +
 	"SecretType\x12\t\n" +
 	"\x05EMPTY\x10\x00\x12\x0f\n" +
@@ -602,57 +601,57 @@ const file_internal_server_proto_gophkeeper_proto_rawDesc = "" +
 	"\x04TEXT\x10\x03\x12\n" +
 	"\n" +
 	"\x06BINARY\x10\x04\x12\b\n" +
-	"\x04CARD\x10\x052\xa2\x02\n" +
+	"\x04CARD\x10\x052\xb2\x02\n" +
 	"\n" +
-	"GophKeeper\x12Q\n" +
-	"\fRegisterUser\x12\x1f.gophkeeper.RegisterUserRequest\x1a .gophkeeper.RegisterUserResponse\x12<\n" +
-	"\x05Login\x12\x18.gophkeeper.LoginRequest\x1a\x19.gophkeeper.LoginResponse\x129\n" +
-	"\x04Sync\x12\x17.gophkeeper.SyncRequest\x1a\x18.gophkeeper.SyncResponse\x12H\n" +
-	"\tGetSecret\x12\x1c.gophkeeper.GetSecretRequest\x1a\x1d.gophkeeper.GetSecretResponseB\x1dZ\x1binternal/proto/gophkeeperpbb\x06proto3"
+	"GophKeeper\x12U\n" +
+	"\fRegisterUser\x12!.gophkeeperpb.RegisterUserRequest\x1a\".gophkeeperpb.RegisterUserResponse\x12@\n" +
+	"\x05Login\x12\x1a.gophkeeperpb.LoginRequest\x1a\x1b.gophkeeperpb.LoginResponse\x12=\n" +
+	"\x04Sync\x12\x19.gophkeeperpb.SyncRequest\x1a\x1a.gophkeeperpb.SyncResponse\x12L\n" +
+	"\tGetSecret\x12\x1e.gophkeeperpb.GetSecretRequest\x1a\x1f.gophkeeperpb.GetSecretResponseB!Z\x1finternal/pkg/proto/gophkeeperpbb\x06proto3"
 
 var (
-	file_internal_server_proto_gophkeeper_proto_rawDescOnce sync.Once
-	file_internal_server_proto_gophkeeper_proto_rawDescData []byte
+	file_internal_pkg_proto_gophkeeper_proto_rawDescOnce sync.Once
+	file_internal_pkg_proto_gophkeeper_proto_rawDescData []byte
 )
 
-func file_internal_server_proto_gophkeeper_proto_rawDescGZIP() []byte {
-	file_internal_server_proto_gophkeeper_proto_rawDescOnce.Do(func() {
-		file_internal_server_proto_gophkeeper_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_internal_server_proto_gophkeeper_proto_rawDesc), len(file_internal_server_proto_gophkeeper_proto_rawDesc)))
+func file_internal_pkg_proto_gophkeeper_proto_rawDescGZIP() []byte {
+	file_internal_pkg_proto_gophkeeper_proto_rawDescOnce.Do(func() {
+		file_internal_pkg_proto_gophkeeper_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_internal_pkg_proto_gophkeeper_proto_rawDesc), len(file_internal_pkg_proto_gophkeeper_proto_rawDesc)))
 	})
-	return file_internal_server_proto_gophkeeper_proto_rawDescData
+	return file_internal_pkg_proto_gophkeeper_proto_rawDescData
 }
 
-var file_internal_server_proto_gophkeeper_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_internal_server_proto_gophkeeper_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
-var file_internal_server_proto_gophkeeper_proto_goTypes = []any{
-	(SecretType)(0),               // 0: gophkeeper.SecretType
-	(*RegisterUserRequest)(nil),   // 1: gophkeeper.RegisterUserRequest
-	(*RegisterUserResponse)(nil),  // 2: gophkeeper.RegisterUserResponse
-	(*LoginRequest)(nil),          // 3: gophkeeper.LoginRequest
-	(*LoginResponse)(nil),         // 4: gophkeeper.LoginResponse
-	(*Secret)(nil),                // 5: gophkeeper.Secret
-	(*SyncRequest)(nil),           // 6: gophkeeper.SyncRequest
-	(*SyncResponse)(nil),          // 7: gophkeeper.SyncResponse
-	(*GetSecretRequest)(nil),      // 8: gophkeeper.GetSecretRequest
-	(*GetSecretResponse)(nil),     // 9: gophkeeper.GetSecretResponse
-	nil,                           // 10: gophkeeper.Secret.MetadataEntry
+var file_internal_pkg_proto_gophkeeper_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_internal_pkg_proto_gophkeeper_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_internal_pkg_proto_gophkeeper_proto_goTypes = []any{
+	(SecretType)(0),               // 0: gophkeeperpb.SecretType
+	(*RegisterUserRequest)(nil),   // 1: gophkeeperpb.RegisterUserRequest
+	(*RegisterUserResponse)(nil),  // 2: gophkeeperpb.RegisterUserResponse
+	(*LoginRequest)(nil),          // 3: gophkeeperpb.LoginRequest
+	(*LoginResponse)(nil),         // 4: gophkeeperpb.LoginResponse
+	(*Secret)(nil),                // 5: gophkeeperpb.Secret
+	(*SyncRequest)(nil),           // 6: gophkeeperpb.SyncRequest
+	(*SyncResponse)(nil),          // 7: gophkeeperpb.SyncResponse
+	(*GetSecretRequest)(nil),      // 8: gophkeeperpb.GetSecretRequest
+	(*GetSecretResponse)(nil),     // 9: gophkeeperpb.GetSecretResponse
+	nil,                           // 10: gophkeeperpb.Secret.MetadataEntry
 	(*timestamppb.Timestamp)(nil), // 11: google.protobuf.Timestamp
 }
-var file_internal_server_proto_gophkeeper_proto_depIdxs = []int32{
-	0,  // 0: gophkeeper.Secret.type:type_name -> gophkeeper.SecretType
-	10, // 1: gophkeeper.Secret.metadata:type_name -> gophkeeper.Secret.MetadataEntry
-	11, // 2: gophkeeper.Secret.updated_at:type_name -> google.protobuf.Timestamp
-	5,  // 3: gophkeeper.SyncRequest.local_secrets:type_name -> gophkeeper.Secret
-	5,  // 4: gophkeeper.SyncResponse.server_secrets:type_name -> gophkeeper.Secret
-	5,  // 5: gophkeeper.GetSecretResponse.secret:type_name -> gophkeeper.Secret
-	1,  // 6: gophkeeper.GophKeeper.RegisterUser:input_type -> gophkeeper.RegisterUserRequest
-	3,  // 7: gophkeeper.GophKeeper.Login:input_type -> gophkeeper.LoginRequest
-	6,  // 8: gophkeeper.GophKeeper.Sync:input_type -> gophkeeper.SyncRequest
-	8,  // 9: gophkeeper.GophKeeper.GetSecret:input_type -> gophkeeper.GetSecretRequest
-	2,  // 10: gophkeeper.GophKeeper.RegisterUser:output_type -> gophkeeper.RegisterUserResponse
-	4,  // 11: gophkeeper.GophKeeper.Login:output_type -> gophkeeper.LoginResponse
-	7,  // 12: gophkeeper.GophKeeper.Sync:output_type -> gophkeeper.SyncResponse
-	9,  // 13: gophkeeper.GophKeeper.GetSecret:output_type -> gophkeeper.GetSecretResponse
+var file_internal_pkg_proto_gophkeeper_proto_depIdxs = []int32{
+	0,  // 0: gophkeeperpb.Secret.type:type_name -> gophkeeperpb.SecretType
+	10, // 1: gophkeeperpb.Secret.metadata:type_name -> gophkeeperpb.Secret.MetadataEntry
+	11, // 2: gophkeeperpb.Secret.updated_at:type_name -> google.protobuf.Timestamp
+	5,  // 3: gophkeeperpb.SyncRequest.local_secrets:type_name -> gophkeeperpb.Secret
+	5,  // 4: gophkeeperpb.SyncResponse.server_secrets:type_name -> gophkeeperpb.Secret
+	5,  // 5: gophkeeperpb.GetSecretResponse.secret:type_name -> gophkeeperpb.Secret
+	1,  // 6: gophkeeperpb.GophKeeper.RegisterUser:input_type -> gophkeeperpb.RegisterUserRequest
+	3,  // 7: gophkeeperpb.GophKeeper.Login:input_type -> gophkeeperpb.LoginRequest
+	6,  // 8: gophkeeperpb.GophKeeper.Sync:input_type -> gophkeeperpb.SyncRequest
+	8,  // 9: gophkeeperpb.GophKeeper.GetSecret:input_type -> gophkeeperpb.GetSecretRequest
+	2,  // 10: gophkeeperpb.GophKeeper.RegisterUser:output_type -> gophkeeperpb.RegisterUserResponse
+	4,  // 11: gophkeeperpb.GophKeeper.Login:output_type -> gophkeeperpb.LoginResponse
+	7,  // 12: gophkeeperpb.GophKeeper.Sync:output_type -> gophkeeperpb.SyncResponse
+	9,  // 13: gophkeeperpb.GophKeeper.GetSecret:output_type -> gophkeeperpb.GetSecretResponse
 	10, // [10:14] is the sub-list for method output_type
 	6,  // [6:10] is the sub-list for method input_type
 	6,  // [6:6] is the sub-list for extension type_name
@@ -660,27 +659,27 @@ var file_internal_server_proto_gophkeeper_proto_depIdxs = []int32{
 	0,  // [0:6] is the sub-list for field type_name
 }
 
-func init() { file_internal_server_proto_gophkeeper_proto_init() }
-func file_internal_server_proto_gophkeeper_proto_init() {
-	if File_internal_server_proto_gophkeeper_proto != nil {
+func init() { file_internal_pkg_proto_gophkeeper_proto_init() }
+func file_internal_pkg_proto_gophkeeper_proto_init() {
+	if File_internal_pkg_proto_gophkeeper_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_server_proto_gophkeeper_proto_rawDesc), len(file_internal_server_proto_gophkeeper_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_pkg_proto_gophkeeper_proto_rawDesc), len(file_internal_pkg_proto_gophkeeper_proto_rawDesc)),
 			NumEnums:      1,
 			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_internal_server_proto_gophkeeper_proto_goTypes,
-		DependencyIndexes: file_internal_server_proto_gophkeeper_proto_depIdxs,
-		EnumInfos:         file_internal_server_proto_gophkeeper_proto_enumTypes,
-		MessageInfos:      file_internal_server_proto_gophkeeper_proto_msgTypes,
+		GoTypes:           file_internal_pkg_proto_gophkeeper_proto_goTypes,
+		DependencyIndexes: file_internal_pkg_proto_gophkeeper_proto_depIdxs,
+		EnumInfos:         file_internal_pkg_proto_gophkeeper_proto_enumTypes,
+		MessageInfos:      file_internal_pkg_proto_gophkeeper_proto_msgTypes,
 	}.Build()
-	File_internal_server_proto_gophkeeper_proto = out.File
-	file_internal_server_proto_gophkeeper_proto_goTypes = nil
-	file_internal_server_proto_gophkeeper_proto_depIdxs = nil
+	File_internal_pkg_proto_gophkeeper_proto = out.File
+	file_internal_pkg_proto_gophkeeper_proto_goTypes = nil
+	file_internal_pkg_proto_gophkeeper_proto_depIdxs = nil
 }

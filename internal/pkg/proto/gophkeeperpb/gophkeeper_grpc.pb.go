@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	GophKeeper_RegisterUser_FullMethodName = "/gophkeeperpb.GophKeeper/RegisterUser"
-	GophKeeper_Login_FullMethodName        = "/gophkeeperpb.GophKeeper/Login"
+	GophKeeper_Login_FullMethodName        = "/gophkeeperpb.GophKeeper/Register"
 	GophKeeper_Sync_FullMethodName         = "/gophkeeperpb.GophKeeper/Sync"
 	GophKeeper_GetSecret_FullMethodName    = "/gophkeeperpb.GophKeeper/GetSecret"
 )
@@ -105,7 +105,7 @@ func (UnimplementedGophKeeperServer) RegisterUser(context.Context, *RegisterUser
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterUser not implemented")
 }
 func (UnimplementedGophKeeperServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
 }
 func (UnimplementedGophKeeperServer) Sync(context.Context, *SyncRequest) (*SyncResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Sync not implemented")
@@ -218,7 +218,7 @@ var GophKeeper_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _GophKeeper_RegisterUser_Handler,
 		},
 		{
-			MethodName: "Login",
+			MethodName: "Register",
 			Handler:    _GophKeeper_Login_Handler,
 		},
 		{

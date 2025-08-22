@@ -161,7 +161,7 @@ func defineGlobalFlags() {
 	flag.StringVar(&cfg.DataSourceName, DataSourceNameFlag, cfg.DataSourceName, "Data Source Name for PostgreSQL (ex: postgres://user:pass@host:port/db)")
 	flag.BoolVar(&cfg.EnableHTTPS, EnableTLSOnServerFlag, cfg.EnableHTTPS, "Enable HTTPS")
 	flag.StringVar(&cfg.LoggingLevel, LoggingLevelFlag, cfg.LoggingLevel, "Level of logging to use")
-	flag.StringVar(&cfg.SecretKey, SecretKeyNameFlag, cfg.SecretKey, "Secret Key")
+	flag.StringVar(&cfg.SecretKey, SecretKeyNameFlag, cfg.SecretKey, "secret Key")
 
 	// Определяем флаг -c/-config здесь еще раз, чтобы он отображался в справке (-h).
 	// Его значение нам уже не нужно, так как мы его получили ранее.

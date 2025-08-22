@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"errors"
-	"github.com/faust8888/GophKeeper/internal/client/repository"
+	"github.com/faust8888/GophKeeper/internal/client/model"
 	"time"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -51,7 +51,7 @@ func initDB(db *sql.DB) error {
 	return err
 }
 
-func (s *Repository) SaveSession(session repository.Session, expires time.Time) error {
+func (s *Repository) SaveSession(session *model.Session, expires time.Time) error {
 	_, err := s.db.Exec(
 		"INSERT OR REPLACE INTO sessions (token, user_id, expires_at, salt) VALUES (?, ?, ?, ?)",
 		session.Token, session.UserID, expires, session.Salt,
@@ -59,17 +59,17 @@ func (s *Repository) SaveSession(session repository.Session, expires time.Time) 
 	return err
 }
 
-func (s *Repository) GetSession() *repository.Session {
+func (s *Repository) GetSession() *model.Session {
 	row := s.db.QueryRow("SELECT token, user_id, expires_at FROM sessions LIMIT 1")
-	session := &repository.Session{}
+	session := &model.Session{}
 	err := row.Scan(&session.Token, &session.UserID, &session.Expires)
 	if errors.Is(err, sql.ErrNoRows) {
-		return &repository.Session{}
+		return &model.Session{}
 	}
 	return session
 }
 
-func (s *Repository) SaveSecret(secret *repository.Secret) error {
+func (s *Repository) SaveSecret(secret *model.Secret) error {
 	meta, err := json.Marshal(secret.Metadata)
 	if err != nil {
 		return err
@@ -87,13 +87,13 @@ func (s *Repository) SaveSecret(secret *repository.Secret) error {
 	return err
 }
 
-func (s *Repository) GetSecret(id string) (*repository.Secret, error) {
+func (s *Repository) GetSecret(id string) (*model.Secret, error) {
 	row := s.db.QueryRow(
 		"SELECT id, type, metadata, data, version, updated_at FROM secrets WHERE id = ?",
 		id,
 	)
 
-	var sec repository.Secret
+	var sec model.Secret
 	var metaStr string
 	err := row.Scan(
 		&sec.ID,
@@ -114,7 +114,7 @@ func (s *Repository) GetSecret(id string) (*repository.Secret, error) {
 	return &sec, nil
 }
 
-func (s *Repository) GetSecretsByType(secretType string) ([]*repository.Secret, error) {
+func (s *Repository) GetSecretsByType(secretType string) ([]*model.Secret, error) {
 	rows, err := s.db.Query(
 		"SELECT id, type, metadata, data, version, updated_at FROM secrets WHERE type = ?",
 		secretType,
@@ -124,12 +124,13 @@ func (s *Repository) GetSecretsByType(secretType string) ([]*repository.Secret, 
 	}
 	defer rows.Close()
 
-	var secrets []*repository.Secret
+	var secrets []*model.Secret
 	for rows.Next() {
-		var sec repository.Secret
-		var metaStr string
-
-		if err := rows.Scan(
+		var (
+			sec     model.Secret
+			metaStr string
+		)
+		if err = rows.Scan(
 			&sec.ID,
 			&sec.Type,
 			&metaStr,
@@ -139,18 +140,20 @@ func (s *Repository) GetSecretsByType(secretType string) ([]*repository.Secret, 
 		); err != nil {
 			return nil, err
 		}
-
-		if err := json.Unmarshal([]byte(metaStr), &sec.Metadata); err != nil {
+		if err = json.Unmarshal([]byte(metaStr), &sec.Metadata); err != nil {
 			return nil, err
 		}
-
-		secrets = append(secrets, &sec)
+		sCopy := sec
+		secrets = append(secrets, &sCopy)
+	}
+	if err = rows.Err(); err != nil {
+		return nil, err
 	}
 
 	return secrets, nil
 }
 
-func (s *Repository) GetAllSecrets() ([]*repository.Secret, error) {
+func (s *Repository) GetAllSecrets() ([]*model.Secret, error) {
 	rows, err := s.db.Query(
 		"SELECT id, type, metadata, data, version, updated_at FROM secrets",
 	)
@@ -159,12 +162,13 @@ func (s *Repository) GetAllSecrets() ([]*repository.Secret, error) {
 	}
 	defer rows.Close()
 
-	var secrets []*repository.Secret
+	var secrets []*model.Secret
 	for rows.Next() {
-		var sec repository.Secret
-		var metaStr string
-
-		if err := rows.Scan(
+		var (
+			sec     model.Secret
+			metaStr string
+		)
+		if err = rows.Scan(
 			&sec.ID,
 			&sec.Type,
 			&metaStr,
@@ -174,12 +178,15 @@ func (s *Repository) GetAllSecrets() ([]*repository.Secret, error) {
 		); err != nil {
 			return nil, err
 		}
-
-		if err := json.Unmarshal([]byte(metaStr), &sec.Metadata); err != nil {
+		if err = json.Unmarshal([]byte(metaStr), &sec.Metadata); err != nil {
 			return nil, err
 		}
+		sCopy := sec
+		secrets = append(secrets, &sCopy)
+	}
 
-		secrets = append(secrets, &sec)
+	if err = rows.Err(); err != nil {
+		return nil, err
 	}
 
 	return secrets, nil

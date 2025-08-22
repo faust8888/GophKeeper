@@ -1,31 +1,16 @@
 package repository
 
 import (
+	"github.com/faust8888/GophKeeper/internal/client/model"
 	"time"
 )
 
 type Repository interface {
-	SaveSession(session Session, expires time.Time) error
-	GetSession() *Session
-	SaveSecret(secret *Secret) error
-	GetSecret(id string) (*Secret, error)
-	GetSecretsByType(secretType string) ([]*Secret, error)
-	GetAllSecrets() ([]*Secret, error)
+	SaveSession(session *model.Session, expires time.Time) error
+	GetSession() *model.Session
+	SaveSecret(secret *model.Secret) error
+	GetSecret(id string) (*model.Secret, error)
+	GetSecretsByType(secretType string) ([]*model.Secret, error)
+	GetAllSecrets() ([]*model.Secret, error)
 	Close() error
-}
-
-type Secret struct {
-	ID        string
-	Type      string
-	Metadata  map[string]string
-	Data      []byte
-	Version   int32
-	UpdatedAt time.Time
-}
-
-type Session struct {
-	Token   string
-	UserID  string
-	Expires time.Time
-	Salt    string
 }

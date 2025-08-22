@@ -7,7 +7,6 @@ import (
 	"github.com/faust8888/GophKeeper/internal/client/repository/sqllite"
 	"github.com/faust8888/GophKeeper/internal/client/service"
 	"github.com/faust8888/GophKeeper/internal/client/terminal"
-	"github.com/faust8888/GophKeeper/internal/server/logger"
 	"os"
 )
 
@@ -25,12 +24,8 @@ func main() {
 
 func run() error {
 	cfg := config.Create()
-	if err := logger.Initialize(cfg.LoggingLevel); err != nil {
-		fmt.Fprintf(os.Stderr, "failed to initialize logger: %v", err)
-		os.Exit(1)
-	}
 
-	clnt, err := client.NewGRPCClient(cfg)
+	clientGRPC, err := client.NewGRPCClient(cfg.ServerGRPCAddress)
 	if err != nil {
 		return fmt.Errorf("new grpc client error: %w\n", err)
 	}
@@ -40,10 +35,7 @@ func run() error {
 		return fmt.Errorf("coldn't create client repository: %w", err)
 	}
 
-	srv, err := service.New(cfg, repo, clnt)
-	if err != nil {
-		return fmt.Errorf("new user service error: %w\n", err)
-	}
+	srv := service.New(cfg, repo, clientGRPC)
 
 	t := terminal.New(srv, version, buildDate)
 

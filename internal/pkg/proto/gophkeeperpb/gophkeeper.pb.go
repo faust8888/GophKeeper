@@ -317,7 +317,7 @@ func (x *Secret) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Secret.ProtoReflect.Descriptor instead.
+// Deprecated: Use secret.ProtoReflect.Descriptor instead.
 func (*Secret) Descriptor() ([]byte, []int) {
 	return file_internal_pkg_proto_gophkeeper_proto_rawDescGZIP(), []int{4}
 }
@@ -575,7 +575,7 @@ const file_internal_pkg_proto_gophkeeper_proto_rawDesc = "" +
 	"\x06Secret\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12,\n" +
 	"\x04type\x18\x02 \x01(\x0e2\x18.gophkeeperpb.SecretTypeR\x04type\x12>\n" +
-	"\bmetadata\x18\x03 \x03(\v2\".gophkeeperpb.Secret.MetadataEntryR\bmetadata\x12\x12\n" +
+	"\bmetadata\x18\x03 \x03(\v2\".gophkeeperpb.secret.MetadataEntryR\bmetadata\x12\x12\n" +
 	"\x04data\x18\x04 \x01(\fR\x04data\x12\x18\n" +
 	"\aversion\x18\x05 \x01(\x05R\aversion\x129\n" +
 	"\n" +
@@ -629,27 +629,27 @@ var file_internal_pkg_proto_gophkeeper_proto_goTypes = []any{
 	(*RegisterUserResponse)(nil),  // 2: gophkeeperpb.RegisterUserResponse
 	(*LoginRequest)(nil),          // 3: gophkeeperpb.LoginRequest
 	(*LoginResponse)(nil),         // 4: gophkeeperpb.LoginResponse
-	(*Secret)(nil),                // 5: gophkeeperpb.Secret
+	(*Secret)(nil),                // 5: gophkeeperpb.secret
 	(*SyncRequest)(nil),           // 6: gophkeeperpb.SyncRequest
 	(*SyncResponse)(nil),          // 7: gophkeeperpb.SyncResponse
 	(*GetSecretRequest)(nil),      // 8: gophkeeperpb.GetSecretRequest
 	(*GetSecretResponse)(nil),     // 9: gophkeeperpb.GetSecretResponse
-	nil,                           // 10: gophkeeperpb.Secret.MetadataEntry
+	nil,                           // 10: gophkeeperpb.secret.MetadataEntry
 	(*timestamppb.Timestamp)(nil), // 11: google.protobuf.Timestamp
 }
 var file_internal_pkg_proto_gophkeeper_proto_depIdxs = []int32{
-	0,  // 0: gophkeeperpb.Secret.type:type_name -> gophkeeperpb.SecretType
-	10, // 1: gophkeeperpb.Secret.metadata:type_name -> gophkeeperpb.Secret.MetadataEntry
-	11, // 2: gophkeeperpb.Secret.updated_at:type_name -> google.protobuf.Timestamp
-	5,  // 3: gophkeeperpb.SyncRequest.local_secrets:type_name -> gophkeeperpb.Secret
-	5,  // 4: gophkeeperpb.SyncResponse.server_secrets:type_name -> gophkeeperpb.Secret
-	5,  // 5: gophkeeperpb.GetSecretResponse.secret:type_name -> gophkeeperpb.Secret
+	0,  // 0: gophkeeperpb.secret.type:type_name -> gophkeeperpb.SecretType
+	10, // 1: gophkeeperpb.secret.metadata:type_name -> gophkeeperpb.secret.MetadataEntry
+	11, // 2: gophkeeperpb.secret.updated_at:type_name -> google.protobuf.Timestamp
+	5,  // 3: gophkeeperpb.SyncRequest.local_secrets:type_name -> gophkeeperpb.secret
+	5,  // 4: gophkeeperpb.SyncResponse.server_secrets:type_name -> gophkeeperpb.secret
+	5,  // 5: gophkeeperpb.GetSecretResponse.secret:type_name -> gophkeeperpb.secret
 	1,  // 6: gophkeeperpb.GophKeeper.RegisterUser:input_type -> gophkeeperpb.RegisterUserRequest
-	3,  // 7: gophkeeperpb.GophKeeper.Login:input_type -> gophkeeperpb.LoginRequest
+	3,  // 7: gophkeeperpb.GophKeeper.Register:input_type -> gophkeeperpb.LoginRequest
 	6,  // 8: gophkeeperpb.GophKeeper.Sync:input_type -> gophkeeperpb.SyncRequest
 	8,  // 9: gophkeeperpb.GophKeeper.GetSecret:input_type -> gophkeeperpb.GetSecretRequest
 	2,  // 10: gophkeeperpb.GophKeeper.RegisterUser:output_type -> gophkeeperpb.RegisterUserResponse
-	4,  // 11: gophkeeperpb.GophKeeper.Login:output_type -> gophkeeperpb.LoginResponse
+	4,  // 11: gophkeeperpb.GophKeeper.Register:output_type -> gophkeeperpb.LoginResponse
 	7,  // 12: gophkeeperpb.GophKeeper.Sync:output_type -> gophkeeperpb.SyncResponse
 	9,  // 13: gophkeeperpb.GophKeeper.GetSecret:output_type -> gophkeeperpb.GetSecretResponse
 	10, // [10:14] is the sub-list for method output_type
